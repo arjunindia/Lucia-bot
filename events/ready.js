@@ -5,6 +5,6 @@ export default defineEvent({
   once: true,
   execute(ctx) {
     ctx.logger.info(`Logged in as ${ctx.client.user.username}!`);
-    ctx.client.user.setActivity("flames", { type: "COMPETING" });
+    ctx.client.user.setActivity("Dance Music", { type: "LISTENING" });
   },
 })
