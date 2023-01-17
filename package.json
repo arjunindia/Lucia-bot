@@ -1,0 +1,17 @@
+{
+  "name": "my-bot",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "chooks",
+    "start": "node dist",
+    "build": "chooks build",
+    "register": "chooks register"
+  },
+  "dependencies": {
+    "@discordjs/builders": "^1.4.0",
+    "chooksie": "^2.4.1",
+    "cross-fetch": "^3.1.5",
+    "discord.js": "^13.7.0"
+  }
+}
