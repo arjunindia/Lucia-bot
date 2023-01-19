@@ -7,7 +7,7 @@ export default defineMessageCommand({
     const msg = ctx.interaction.targetMessage;
     const user = ctx.interaction.targetMessage.author.id;
     await fetch(
-      `https://www.purgomalum.com/service/containsprofanity?text=${msg.content}&add=${process.env.SWEARWORDS}}`
+      `https://www.purgomalum.com/service/containsprofanity?text=${msg.content}&add=${process.env.SWEARWORDS}`
     )
       .then((res) => res.text())
       .then((data) => {
