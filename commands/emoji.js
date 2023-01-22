@@ -4,17 +4,18 @@ export default defineSlashCommand({
   name: "emoji",
   description: "Send a custom emoji - even animated ones!",
   async execute(ctx) {
-    ctx.interaction.client.emojis.cache.forEach((emoji) => {
-      if (emoji.name === ctx.interaction.options.getString("message")) {
-        ctx.interaction.reply({
-          content: emoji.toString(),
-        });
-      }
-    });
+    //get guild from id
+    const emoji = ctx.interaction.client.emojis.cache.find(
+      (emoji) => emoji.name === ctx.interaction.options.getString("message")
+    );
 
-    // await ctx.interaction.reply({
-    //   content: ctx.interaction.options.getString("message"),
-    // });
+    //send emoji
+
+    await ctx.interaction.reply({
+      content: `${
+        emoji ? emoji : ctx.interaction.options.getString("message")
+      }`,
+    });
   },
   options: [
     {
