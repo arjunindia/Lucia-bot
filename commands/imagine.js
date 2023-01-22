@@ -8,10 +8,7 @@ export default defineSlashCommand({
     const channelId = ctx.interaction.channelId;
     const channel = ctx.client.channels.cache.get(`${channelId}`);
     console.log(channelId);
-    ctx.interaction.reply({
-      content: "Generating image...",
-      ephemeral: true,
-    });
+    ctx.interaction.deferReply();
     await fetch("https://backend.craiyon.com/generate", {
       method: "POST",
       headers: {

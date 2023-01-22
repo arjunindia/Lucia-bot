@@ -5,6 +5,7 @@ export default defineSlashCommand({
   name: "chessdata",
   description: "Get chess.com data from username",
   async execute(ctx) {
+    await ctx.interaction.deferReply();
     const username = ctx.interaction.options.getString("username");
     let elo = 0;
     await fetch(`https://api.chess.com/pub/player/${username}/stats`)
@@ -25,7 +26,7 @@ export default defineSlashCommand({
       .then((response) => response.json())
       .then((quote) => {
         if (quote.url !== undefined) {
-          ctx.interaction.reply({
+          ctx.interaction.followUp({
             embeds: [
               {
                 type: "rich",
@@ -72,7 +73,7 @@ export default defineSlashCommand({
             ],
           });
         } else {
-          ctx.interaction.reply({
+          ctx.interaction.followUp({
             content: `User ${username} not found`,
           });
         }
