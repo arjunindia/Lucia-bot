@@ -4,10 +4,11 @@ export default defineSlashCommand({
   name: "randomanime",
   description: "Get a random anime from MyAnimeList",
   async execute(ctx) {
+    await ctx.interaction.deferReply();
     await fetch("https://api.jikan.moe/v4/random/anime")
       .then((res) => res.json())
       .then((data) => {
-        ctx.interaction.reply({
+        ctx.interaction.followUp({
           embeds: [
             {
               title: data.data.title,

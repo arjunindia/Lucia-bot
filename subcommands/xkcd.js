@@ -21,10 +21,11 @@ export default defineSlashSubcommand({
           type: "SUB_COMMAND",
 
           async execute(ctx) {
+            await ctx.interaction.deferReply();
             await fetch("https://xkcd.com/info.0.json")
               .then((res) => res.json())
               .then((data) => {
-                ctx.interaction.reply({
+                ctx.interaction.followUp({
                   embeds: [
                     {
                       type: "rich",

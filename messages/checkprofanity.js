@@ -4,6 +4,7 @@ import fetch from "cross-fetch";
 export default defineMessageCommand({
   name: "Check Profanity",
   async execute(ctx) {
+    await ctx.interaction.deferReply();
     const msg = ctx.interaction.targetMessage;
     const user = ctx.interaction.targetMessage.author.id;
     await fetch(
@@ -12,11 +13,11 @@ export default defineMessageCommand({
       .then((res) => res.text())
       .then((data) => {
         if (data == "true") {
-          ctx.interaction.reply(
+          ctx.interaction.followUp(
             `This message contains profanity! bad boy <@${user}>!`
           );
         } else {
-          ctx.interaction.reply(
+          ctx.interaction.followUp(
             `This message does not seem to contain profanity! you get my pass for today <@${user}>!`
           );
         }

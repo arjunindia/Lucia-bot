@@ -42,6 +42,7 @@ export default defineSlashSubcommand({
           type: "SUB_COMMAND",
 
           async execute(ctx) {
+            await ctx.interaction.deferReply();
             await fetch(
               `https://api.henrikdev.xyz/valorant/v1/account/${ctx.interaction.options.getString(
                 "playername"
@@ -49,7 +50,7 @@ export default defineSlashSubcommand({
             )
               .then((res) => res.json())
               .then((data) => {
-                ctx.interaction.reply({
+                ctx.interaction.followUp({
                   embeds: [
                     {
                       title: data.data.name + "#" + data.data.tag,
