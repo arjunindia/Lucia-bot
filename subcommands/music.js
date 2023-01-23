@@ -4,11 +4,8 @@ import {
   defineSubcommand,
   defineSubcommandGroup,
 } from "chooksie";
-import { Player } from "discord-music-player";
 //use the discord-music-player package to play music
-let player;
-let queue;
-let guildQueue;
+
 export default defineSlashSubcommand({
   name: "music",
   description: "Play music!",
@@ -24,12 +21,11 @@ export default defineSlashSubcommand({
           type: "SUB_COMMAND",
 
           async execute(ctx) {
-            //get the player from the client
-            let player = new Player(ctx.client);
-            console.log(player);
             ctx.interaction.deferReply();
-            queue = player.createQueue(ctx.interaction.guild.id);
-            guildQueue = player.getQueue(ctx.interaction.guild.id);
+            let queue = ctx.client.player.createQueue(ctx.interaction.guild.id);
+            let guildQueue = ctx.client.player.getQueue(
+              ctx.interaction.guild.id
+            );
             await queue.join(ctx.interaction.member.voice.channel);
             //get the query from the command
             const query = ctx.interaction.options.getString("query");
@@ -40,7 +36,7 @@ export default defineSlashSubcommand({
               console.error(err);
             });
             //send the song name
-            await ctx.interaction.followUp(`Playing ${song.name}!`);
+            await ctx.interaction.followUp(`Added ${song.name} to queue!`);
           },
           options: [
             defineOption({
@@ -58,6 +54,9 @@ export default defineSlashSubcommand({
 
           async execute(ctx) {
             //stop the queue
+            let guildQueue = ctx.client.player.getQueue(
+              ctx.interaction.guild.id
+            );
             if (guildQueue) {
               guildQueue.stop();
             }
