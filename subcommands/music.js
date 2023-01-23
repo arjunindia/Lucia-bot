@@ -63,6 +63,22 @@ export default defineSlashSubcommand({
             await ctx.interaction.reply("Stopped the queue!");
           },
         }),
+        defineSubcommand({
+          name: "skip",
+          description: "Skip the current song",
+          type: "SUB_COMMAND",
+
+          async execute(ctx) {
+            //skip the current song
+            let guildQueue = ctx.client.player.getQueue(
+              ctx.interaction.guild.id
+            );
+            if (guildQueue) {
+              guildQueue.skip();
+            }
+            await ctx.interaction.reply("Skipped the song!");
+          },
+        }),
       ],
     }),
   ],
