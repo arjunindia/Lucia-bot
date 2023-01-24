@@ -33,9 +33,10 @@ export default defineSlashSubcommand({
 
             let song = await queue.play(query).catch((err) => {
               if (!guildQueue) queue.stop();
+
               console.error(err);
             });
-            //send the song name
+
             await ctx.interaction.followUp(`Added ${song.name} to queue!`);
           },
           options: [
@@ -57,9 +58,8 @@ export default defineSlashSubcommand({
             let guildQueue = ctx.client.player.getQueue(
               ctx.interaction.guild.id
             );
-            if (guildQueue) {
-              guildQueue.stop();
-            }
+            if (guildQueue) guildQueue.stop();
+
             await ctx.interaction.reply("Stopped the queue!");
           },
         }),
@@ -73,9 +73,8 @@ export default defineSlashSubcommand({
             let guildQueue = ctx.client.player.getQueue(
               ctx.interaction.guild.id
             );
-            if (guildQueue) {
-              guildQueue.skip();
-            }
+            if (guildQueue) guildQueue.skip();
+
             await ctx.interaction.reply("Skipped the song!");
           },
         }),
