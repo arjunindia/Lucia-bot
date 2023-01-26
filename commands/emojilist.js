@@ -37,7 +37,17 @@ export default defineSlashCommand({
       const embed = new MessageEmbed()
         .setTitle("Emoji List")
         .setDescription("Emojis available to be used by the emoji command")
-        .addField("Emojis", page.join(" "))
+        .addFields(
+          {
+            name: "Emojis",
+            value: page.join(" "),
+          },
+          {
+            name: "How to use",
+            value:
+              "Use the emoji command like this: `/emoji message:`your message here [your emoji name here] and so on [with any amount of emojis]`",
+          }
+        )
         .setColor("RANDOM");
       return embed;
     });
