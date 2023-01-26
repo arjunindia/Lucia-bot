@@ -60,6 +60,7 @@ export default defineSlashCommand({
             const emojiObject = emojiObjects.find((e) => e.name === emojiName);
             //if the emoji is not found, return the emoji name
             if (typeof emojiObject === "string") return emojiObject;
+            if (emojiObject?.animated === undefined) return emojiName;
             //if the emoji is found, return the emoji id
             return `<${emojiObject.animated ? "a" : ""}:${emojiObject.name}:${
               emojiObject.id
