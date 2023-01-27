@@ -62,7 +62,7 @@ export default defineSlashCommand({
           } in r/${sub}`,
         },
       };
-      ctx.interaction.followUp({ embeds: [embed] });
+      await ctx.interaction.followUp({ embeds: [embed] });
       return;
     }
     const embed = {
@@ -77,7 +77,7 @@ export default defineSlashCommand({
         } in r/${sub}`,
       },
     };
-    ctx.interaction.followUp({ embeds: [embed] });
+    await ctx.interaction.followUp({ embeds: [embed] });
   },
   options: [
     {
