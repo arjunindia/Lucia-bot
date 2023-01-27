@@ -42,10 +42,12 @@ export default defineSlashCommand({
       title: post.title,
       url: `https://reddit.com${post.permalink}`,
       image: {
-        url: post.url,
+        url: post?.url ? post.url : post?.preview?.images[0]?.source,
       },
       footer: {
-        text: `Posted by u/${post.author.name} in r/${post.subreddit.display_name}`,
+        text: `Posted by u/${
+          post.author.name ? post.author.name : "anonymous"
+        } in r/${sub}`,
       },
     };
     ctx.interaction.followUp({ embeds: [embed] });
