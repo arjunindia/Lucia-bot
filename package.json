@@ -18,7 +18,8 @@
     "discord.js": "^13.7.0",
     "discordjs-button-pagination": "github:arjunindia/discordjs-button-pagination",
     "ffmpeg-static": "^5.1.0",
-    "isomorphic-unfetch": "^4.0.2"
+    "isomorphic-unfetch": "^4.0.2",
+    "snoowrap": "^1.23.0"
   },
   "devDependencies": {
     "@chookscord/cli": "^2.4.1"
