@@ -45,7 +45,7 @@ export default defineSlashCommand({
         unescape(post?.preview?.images[0]?.source.url).replace("amp;", "")
       );
       const embed = {
-        title: post.title,
+        title: "video: " + post.title,
         url: `https://reddit.com${post.permalink}`,
         image: {
           url: unescape(post?.preview?.images[0]?.source.url).replace(
