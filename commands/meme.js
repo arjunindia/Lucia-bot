@@ -4,7 +4,10 @@ import fetch from "cross-fetch";
 Array.prototype.sample = function () {
   return this[Math.floor(Math.random() * this.length)];
 };
-
+String.prototype.replaceAll = function (search, replacement) {
+  var target = this;
+  return target.replace(new RegExp(search, "g"), replacement);
+};
 export default defineSlashCommand({
   name: "meme",
   description: "Get a random meme from a variety of subreddits",
@@ -42,13 +45,13 @@ export default defineSlashCommand({
 
     if (post.url && post.url.includes("v.red")) {
       ctx.logger.info(
-        unescape(post?.preview?.images[0]?.source.url).replace("amp;", "")
+        unescape(post?.preview?.images[0]?.source.url).replaceAll("amp;", "")
       );
       const embed = {
         title: "video: " + post.title,
         url: `https://reddit.com${post.permalink}`,
         image: {
-          url: unescape(post?.preview?.images[0]?.source.url).replace(
+          url: unescape(post?.preview?.images[0]?.source.url).replaceAll(
             "amp;",
             ""
           ),
