@@ -39,7 +39,7 @@ export default defineSlashCommand({
     const sub = subArray.sample();
     //ctx.client.r is the reddit client using snoowrap
     const post = await ctx.client.r.getSubreddit(sub).getRandomSubmission();
-    if (post.url.includes("v.red")) {
+    if (post.url && post.url.includes("v.red")) {
       const embed = {
         title: post.title,
         url: `https://reddit.com${post.permalink}`,
