@@ -1,4 +1,5 @@
 import { defineSlashCommand } from "chooksie";
+import fetch from "cross-fetch";
 
 Array.prototype.sample = function () {
   return this[Math.floor(Math.random() * this.length)];
@@ -38,11 +39,27 @@ export default defineSlashCommand({
     const sub = subArray.sample();
     //ctx.client.r is the reddit client using snoowrap
     const post = await ctx.client.r.getSubreddit(sub).getRandomSubmission();
+    if (post.url.includes("v.red")) {
+      const embed = {
+        title: post.title,
+        url: `https://reddit.com${post.permalink}`,
+        image: {
+          url: post?.preview?.images[0]?.source,
+        },
+        footer: {
+          text: `Posted by u/${
+            post.author.name ? post.author.name : "anonymous"
+          } in r/${sub}`,
+        },
+      };
+      ctx.interaction.followUp({ embeds: [embed] });
+      return;
+    }
     const embed = {
       title: post.title,
       url: `https://reddit.com${post.permalink}`,
       image: {
-        url: post?.url ? post.url : post?.preview?.images[0]?.source,
+        url: post?.url ? post.url : "https://i.imgur.com/0Z0Z0Z0.png",
       },
       footer: {
         text: `Posted by u/${
