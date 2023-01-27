@@ -41,12 +41,17 @@ export default defineSlashCommand({
     const post = await ctx.client.r.getSubreddit(sub).getRandomSubmission();
 
     if (post.url && post.url.includes("v.red")) {
-      ctx.logger.info(unescape(post?.preview?.images[0]?.source.url));
+      ctx.logger.info(
+        unescape(post?.preview?.images[0]?.source.url).replace("amp;", "")
+      );
       const embed = {
         title: post.title,
         url: `https://reddit.com${post.permalink}`,
         image: {
-          url: unescape(post?.preview?.images[0]?.source.url),
+          url: unescape(post?.preview?.images[0]?.source.url).replace(
+            "amp;",
+            ""
+          ),
         },
         footer: {
           text: `Posted by u/${
