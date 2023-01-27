@@ -44,7 +44,7 @@ export default defineSlashCommand({
         title: post.title,
         url: `https://reddit.com${post.permalink}`,
         image: {
-          url: post?.preview?.images[0]?.source,
+          url: post?.preview?.images[0]?.source.url,
         },
         footer: {
           text: `Posted by u/${
