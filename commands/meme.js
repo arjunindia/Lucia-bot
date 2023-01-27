@@ -40,6 +40,10 @@ export default defineSlashCommand({
     //ctx.client.r is the reddit client using snoowrap
     const post = await ctx.client.r.getSubreddit(sub).getRandomSubmission();
     if (post.url && post.url.includes("v.red")) {
+      ctx.logger.info(
+        "Video post detected, url for video preview: " +
+          post.preview.images[0].source.url
+      );
       const embed = {
         title: post.title,
         url: `https://reddit.com${post.permalink}`,
