@@ -19,7 +19,7 @@ export default defineSlashCommand({
         subArray = ["dankmemes", "memes", "meirl", "me_irl"];
         break;
       case "shitposting":
-        subArray = ["shitposting", "ppnojutsu", "okbuddyretard"];
+        subArray = ["shitposting", "okbuddyretard"];
         break;
       case "ProgrammerHumor":
         subArray = ["ProgrammerHumor"];
