@@ -19,10 +19,15 @@ export default defineSlashCommand({
         subArray = ["dankmemes", "memes", "meirl", "me_irl"];
         break;
       case "shitposting":
-        subArray = ["shitposting", "okbuddyretard"];
+        subArray = ["shitposting", "okbuddyretard", "whenthe"];
         break;
       case "ProgrammerHumor":
-        subArray = ["ProgrammerHumor"];
+        subArray = [
+          "ProgrammerHumor",
+          "ProgrammerAnimemes",
+          "linuxanimemes",
+          "linuxmemes",
+        ];
         break;
       case "gaming":
         subArray = [
@@ -30,10 +35,20 @@ export default defineSlashCommand({
           "Genshin_Memepact",
           "ApexLegendsMemes",
           "ValorantMemes",
+          "MinecraftMemes",
         ];
         break;
       case "anime":
-        subArray = ["animemes", "animememes", "animememe", "okbuddybaka"];
+        subArray = [
+          "animemes",
+          "animememes",
+          "animememe",
+          "goodanimemes",
+          "okbuddybaka",
+        ];
+        break;
+      case "wholesome":
+        subArray = ["wholesomememes", "wholesomemes", "wholesomeanimememes"];
         break;
 
       default:
@@ -49,7 +64,6 @@ export default defineSlashCommand({
       return post;
     };
     const post = await postFn();
-
 
     if (post.url && post.url.includes("v.red")) {
       ctx.logger.info(
@@ -113,6 +127,10 @@ export default defineSlashCommand({
         {
           name: "Anime",
           value: "anime",
+        },
+        {
+          name: "Wholesome",
+          value: "wholesome",
         },
       ],
     },
