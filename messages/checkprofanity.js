@@ -1,26 +1,29 @@
 import { defineMessageCommand } from "chooksie";
-import fetch from "cross-fetch";
+import profanity from "profanity-hindi";
 
+profanity.addWords(
+  process.env.SWEARWORDS.split(",").map((word) => word.trim())
+);
 export default defineMessageCommand({
   name: "Check Profanity",
   async execute(ctx) {
     await ctx.interaction.deferReply();
     const msg = ctx.interaction.targetMessage;
     const user = ctx.interaction.targetMessage.author.id;
-    await fetch(
-      `https://www.purgomalum.com/service/containsprofanity?text=${msg.content}&add=${process.env.SWEARWORDS}`
-    )
-      .then((res) => res.text())
-      .then((data) => {
-        if (data == "true") {
-          ctx.interaction.followUp(
-            `This message contains profanity! bad boy <@${user}>!`
-          );
-        } else {
-          ctx.interaction.followUp(
-            `This message does not seem to contain profanity! you get my pass for today <@${user}>!`
-          );
-        }
+    if (profanity.isMessageDirty(msg.content)) {
+      await ctx.interaction.followUp({
+        content: `Message contains profanity! Bad boy <@${user}>!`,
+        allowedMentions: {
+          users: [user],
+        },
       });
+    } else {
+      await ctx.interaction.followUp({
+        content: `Message is clean! You get my pass for now <@${user}>!`,
+        allowedMentions: {
+          users: [user],
+        },
+      });
+    }
   },
 });
