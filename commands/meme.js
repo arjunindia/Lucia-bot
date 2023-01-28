@@ -41,7 +41,15 @@ export default defineSlashCommand({
     }
     const sub = subArray.sample();
     //ctx.client.r is the reddit client using snoowrap
-    const post = await ctx.client.r.getSubreddit(sub).getRandomSubmission();
+    const postFn = async () => {
+      const post = await ctx.client.r.getSubreddit(sub).getRandomSubmission();
+      if (post.over_18) {
+        return await postFn();
+      }
+      return post;
+    };
+    const post = await postFn();
+
 
     if (post.url && post.url.includes("v.red")) {
       ctx.logger.info(
