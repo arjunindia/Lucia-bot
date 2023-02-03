@@ -55,7 +55,7 @@ export default defineSlashSubcommand({
               embeds: [
                 {
                   title: "Added to queue",
-                  description: `[${song.name} - ${song.author}](${song.url}))`,
+                  description: `[${song.name} - ${song.author}](${song.url})`,
                   color: "RANDOM",
                   thumbnail: {
                     url: song.thumbnail
