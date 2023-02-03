@@ -62,6 +62,7 @@ export default defineSlashSubcommand({
                       ? song.thumbnail
                       : "https://i.ibb.co/cTxbLpd/LOGO.png",
                   },
+                  url: song.url,
                 },
               ],
             });
