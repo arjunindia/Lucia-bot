@@ -37,7 +37,20 @@ export default defineSlashSubcommand({
               console.error(err);
             });
 
-            await ctx.interaction.followUp(`Added ${song.name} to queue!`);
+            await ctx.interaction.followUp({
+              embeds: [
+                {
+                  title: "Added to queue",
+                  description: `${song.name} - ${song.author}`,
+                  color: "RANDOM",
+                  thumbnail: {
+                    url: song.thumbnail
+                      ? song.thumbnail
+                      : "https://i.ibb.co/cTxbLpd/LOGO.png",
+                  },
+                },
+              ],
+            });
           },
           options: [
             defineOption({
