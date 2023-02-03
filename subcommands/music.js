@@ -21,14 +21,13 @@ export default defineSlashSubcommand({
           type: "SUB_COMMAND",
 
           async execute(ctx) {
-            await ctx.interaction.deferReply();
             let queue = ctx.client.player.createQueue(ctx.interaction.guild.id);
             let guildQueue = ctx.client.player.getQueue(
               ctx.interaction.guild.id
             );
             //check if the user is in a voice channel
             if (!ctx.interaction.member.voice.channel) {
-              return await ctx.interaction.editReply({
+              return await ctx.interaction.reply({
                 embeds: [
                   {
                     title:
@@ -39,6 +38,8 @@ export default defineSlashSubcommand({
                 ephemeral: true,
               });
             }
+
+            await ctx.interaction.deferReply();
             await queue.join(ctx.interaction.member.voice.channel);
             //get the query from the command
             const query = ctx.interaction.options.getString("query");
