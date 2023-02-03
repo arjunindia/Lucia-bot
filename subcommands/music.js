@@ -21,7 +21,6 @@ export default defineSlashSubcommand({
           type: "SUB_COMMAND",
 
           async execute(ctx) {
-            await ctx.interaction.deferReply();
             let queue = ctx.client.player.createQueue(ctx.interaction.guild.id);
             let guildQueue = ctx.client.player.getQueue(
               ctx.interaction.guild.id
@@ -40,6 +39,7 @@ export default defineSlashSubcommand({
               });
             }
 
+            await ctx.interaction.deferReply();
             await queue.join(ctx.interaction.member.voice.channel);
             //get the query from the command
             const query = ctx.interaction.options.getString("query");
