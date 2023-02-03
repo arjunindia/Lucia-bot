@@ -28,7 +28,7 @@ export default defineSlashSubcommand({
             );
             //check if the user is in a voice channel
             if (!ctx.interaction.member.voice.channelId) {
-              return await ctx.interaction.followUp({
+              return await ctx.interaction.editReply({
                 embeds: [
                   {
                     title:
