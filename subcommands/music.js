@@ -55,14 +55,13 @@ export default defineSlashSubcommand({
               embeds: [
                 {
                   title: "Added to queue",
-                  description: `${song.name} - ${song.author}`,
+                  description: `[${song.name} - ${song.author}](${song.url}))`,
                   color: "RANDOM",
                   thumbnail: {
                     url: song.thumbnail
                       ? song.thumbnail
                       : "https://i.ibb.co/cTxbLpd/LOGO.png",
                   },
-                  url: song.url,
                 },
               ],
             });
