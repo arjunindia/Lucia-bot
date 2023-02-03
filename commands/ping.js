@@ -12,7 +12,7 @@ export default defineSlashCommand({
       .setLabel("Ping");
 
     await ctx.interaction.reply({
-      content: "Pong!",
+      content: "Pong! " + ctx.client.ws.ping + "ms",
       components: [new MessageActionRow().addComponents(button)],
     });
   },
