@@ -21,7 +21,7 @@ export default defineSlashSubcommand({
           type: "SUB_COMMAND",
 
           async execute(ctx) {
-            ctx.interaction.deferReply();
+            await ctx.interaction.deferReply();
             let queue = ctx.client.player.createQueue(ctx.interaction.guild.id);
             let guildQueue = ctx.client.player.getQueue(
               ctx.interaction.guild.id
