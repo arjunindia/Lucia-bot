@@ -27,7 +27,7 @@ export default defineSlashSubcommand({
               ctx.interaction.guild.id
             );
             //check if the user is in a voice channel
-            if (!ctx.interaction.member.voice.channelId) {
+            if (!ctx.interaction.member.voice.channel) {
               return await ctx.interaction.editReply({
                 embeds: [
                   {
