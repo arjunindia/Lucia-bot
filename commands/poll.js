@@ -1,42 +1,63 @@
 import { defineSlashCommand } from "chooksie";
-import { MessageButton, MessageActionRow } from "discord.js";
+
+const options = [
+  "🇦",
+  "🇧",
+  "🇨",
+  "🇩",
+  "🇪",
+  "🇫",
+  "🇬",
+  "🇭",
+  "🇮",
+  "🇯",
+  "🇰",
+  "🇱",
+  "🇲",
+  "🇳",
+  "🇴",
+  "🇵",
+  "🇶",
+  "🇷",
+  "🇸",
+  "🇹",
+  "🇺",
+  "🇻",
+  "🇼",
+  "🇽",
+  "🇾",
+  "🇿",
+];
 
 export default defineSlashCommand({
   name: "poll",
-  description: "Create a poll",
+  description: "Start a poll",
   async execute(ctx) {
-    const question = ctx.interaction.options.getString("question");
-    const options = ctx.interaction.options.getString("options").split(",");
-
-    if (options.length > 10)
+    if (ctx.interaction.options.getString("options").split(",").length > 26) {
       return await ctx.interaction.reply({
-        embeds: [
-          {
-            title: "You can only have up to 10 options!",
-            color: "RED",
-          },
-        ],
+        content: "You can only have up to 26 options",
         ephemeral: true,
       });
+    }
 
-    const buttons = options.map((option) => {
-      return new MessageButton()
-        .setLabel(option)
-        .setStyle("PRIMARY")
-        .setCustomId(option);
-    });
-
-    const buttonRow = new MessageActionRow().addComponents(buttons);
-
-    await ctx.interaction.reply({
+    const reply = await ctx.interaction.reply({
       embeds: [
         {
-          title: question,
-          color: "RANDOM",
+          title: ctx.interaction.options.getString("question"),
+          description: ctx.interaction.options
+            .getString("options")
+            .split(",")
+            .map((option, index) => `${options[index]} : ${option}`)
+            .join("\n"),
         },
       ],
-      components: [buttonRow],
+      fetchReply: true,
     });
+    const opts = ctx.interaction.options.getString("options").split(",");
+
+    for (const i of opts.keys()) {
+      await reply.react(options[i]);
+    }
   },
   options: [
     {
