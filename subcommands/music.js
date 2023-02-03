@@ -28,16 +28,18 @@ export default defineSlashSubcommand({
             );
             //check if the user is in a voice channel
             if (!ctx.interaction.member.voice.channel)
-              return ctx.interaction.followUp({
-                embeds: [
-                  {
-                    title:
-                      "You need to be in a voice channel to use this command!",
-                    color: "RED",
-                  },
-                ],
-              });
-
+              {
+                await ctx.interaction.followUp({
+                  embeds: [
+                    {
+                      title:
+                        "You need to be in a voice channel to use this command!",
+                      color: "RED",
+                    },
+                  ],
+                });
+                return;
+              }
             await queue.join(ctx.interaction.member.voice.channel);
             //get the query from the command
             const query = ctx.interaction.options.getString("query");
