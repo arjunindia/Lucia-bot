@@ -219,8 +219,9 @@ export default defineSlashSubcommand({
             ],
             ephemeral: true,
           });
+        await ctx.interaction.deferReply();
         if (guildQueue) guildQueue.setPaused(true);
-        await ctx.interaction.reply({
+        await ctx.interaction.editReply({
           embeds: [
             {
               title: "Paused the current song!",
@@ -260,8 +261,9 @@ export default defineSlashSubcommand({
             ],
             ephemeral: true,
           });
+        await ctx.interaction.deferReply();
         if (guildQueue) guildQueue.setPaused(false);
-        await ctx.interaction.reply({
+        await ctx.interaction.editReply({
           embeds: [
             {
               title: "Resumed the current song!",

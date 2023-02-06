@@ -20,6 +20,7 @@
     "ffmpeg-static": "^5.1.0",
     "isomorphic-unfetch": "^4.0.2",
     "profanity-hindi": "^1.1.0",
+    "sagiri": "^3.4.0",
     "snoowrap": "^1.23.0"
   },
   "devDependencies": {
