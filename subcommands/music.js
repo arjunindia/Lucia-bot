@@ -189,5 +189,87 @@ export default defineSlashSubcommand({
         }),
       ],
     }),
+    defineSubcommand({
+      name: "pause",
+      description: "Pause the current song",
+      type: "SUB_COMMAND",
+
+      async execute(ctx) {
+        let guildQueue = ctx.client.player.getQueue(ctx.interaction.guild.id);
+        if (!ctx.interaction.member.voice.channel)
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title: "You need to be in a voice channel to use this command!",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
+        if (
+          ctx.interaction.member.voice.channel.id !== guildQueue.voiceChannel.id
+        )
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title:
+                  "You need to be in the same voice channel as the bot to use this command!",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
+        if (guildQueue) guildQueue.setPaused(true);
+        await ctx.interaction.reply({
+          embeds: [
+            {
+              title: "Paused the current song!",
+              color: "RANDOM",
+            },
+          ],
+        });
+      },
+    }),
+    defineSubcommand({
+      name: "resume",
+      description: "Pause the current song",
+      type: "SUB_COMMAND",
+
+      async execute(ctx) {
+        let guildQueue = ctx.client.player.getQueue(ctx.interaction.guild.id);
+        if (!ctx.interaction.member.voice.channel)
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title: "You need to be in a voice channel to use this command!",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
+        if (
+          ctx.interaction.member.voice.channel.id !== guildQueue.voiceChannel.id
+        )
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title:
+                  "You need to be in the same voice channel as the bot to use this command!",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
+        if (guildQueue) guildQueue.setPaused(false);
+        await ctx.interaction.reply({
+          embeds: [
+            {
+              title: "Resumed the current song!",
+              color: "RANDOM",
+            },
+          ],
+        });
+      },
+    }),
   ],
 });
