@@ -27,6 +27,12 @@ export default defineSlashCommand({
             results[0].raw.data.source
               ? results[0].raw.data.source
               : results[0].raw.data.title
+              ? results[0].raw.data.title
+              : results[0].raw.data.material
+              ? results[0].raw.data.material
+              : results[0].raw.data.part
+              ? results[0].raw.data.part
+              : results[0].raw.data.name
           }\n **Author:** ${results[0].authorName}\n**Source:** ${
             results[0].site
           }\n**URL:** ${results[0].url}`,
