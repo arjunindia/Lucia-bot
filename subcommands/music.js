@@ -205,19 +205,7 @@ export default defineSlashSubcommand({
             ],
             ephemeral: true,
           });
-        if (
-          ctx.interaction.member.voice.channel.id !== guildQueue.voiceChannel.id
-        )
-          return await ctx.interaction.reply({
-            embeds: [
-              {
-                title:
-                  "You need to be in the same voice channel as the bot to use this command!",
-                color: "RED",
-              },
-            ],
-            ephemeral: true,
-          });
+
         if (!ctx.interaction.guild.voice) {
           return await ctx.interaction.reply({
             embeds: [
@@ -248,6 +236,18 @@ export default defineSlashSubcommand({
 
         await ctx.interaction.deferReply();
         let guildQueue = ctx.client.player.getQueue(ctx.interaction.guild.id);
+        if (
+          ctx.interaction.member.voice.channel.id !== guildQueue.voiceChannel.id
+        )
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title:
+                  "You need to be in the same voice channel as the bot to use this command!",
+                color: "RED",
+              },
+            ],
+          });
         if (!guildQueue)
           return await ctx.interaction.editReply({
             embeds: [
@@ -296,19 +296,7 @@ export default defineSlashSubcommand({
             ],
             ephemeral: true,
           });
-        if (
-          ctx.interaction.member.voice.channel.id !== guildQueue.voiceChannel.id
-        )
-          return await ctx.interaction.reply({
-            embeds: [
-              {
-                title:
-                  "You need to be in the same voice channel as the bot to use this command!",
-                color: "RED",
-              },
-            ],
-            ephemeral: true,
-          });
+
         if (!ctx.interaction.guild.voice) {
           return await ctx.interaction.reply({
             embeds: [
@@ -339,6 +327,19 @@ export default defineSlashSubcommand({
 
         await ctx.interaction.deferReply();
         let guildQueue = ctx.client.player.getQueue(ctx.interaction.guild.id);
+        if (
+          ctx.interaction.member.voice.channel.id !== guildQueue.voiceChannel.id
+        )
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title:
+                  "You need to be in the same voice channel as the bot to use this command!",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
         if (!guildQueue)
           return await ctx.interaction.editReply({
             embeds: [
