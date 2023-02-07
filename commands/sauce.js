@@ -35,16 +35,19 @@ export default defineSlashCommand({
               : results[0].raw.data.name
           }\n **Author:** ${results[0].authorName}\n**Source:** ${
             results[0].site
-          }\n**URL:** ${results[0].url}`,
+          }\n**URL:** ${results[0].url}
+          \n**Similarity:** ${results[0].similarity}
+          \nNot what you were looking for? Try [Yandex Reverse Image Search](https://yandex.com/images/search?rpt=imageview&img_url=${encodeURIComponent(
+            url
+          )})
+          `,
           thumbnail: {
             url: results[0].thumbnail,
           },
           color: "RANDOM",
           footer: {
-            text:
-              "Not what you were looking for? Try [Yandex Reverse Image Search](https://yandex.com/images/search?rpt=imageview&img_url=" +
-              encodeURIComponent(url) +
-              ")",
+            text: "Powered by SauceNAO",
+            iconURL: "https://saucenao.com/favicon.ico",
           },
         },
       ],
