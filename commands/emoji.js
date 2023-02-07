@@ -9,7 +9,10 @@ export default defineSlashCommand({
     //get the message from the command
     const message = ctx.interaction.options.getString("message");
     //get all the words between square brackets
-    const matches = message.match(regex);
+    let matches = message.match(regex);
+    if (!matches) {
+      matches = [];
+    }
     //get all the emojis from the message
     const emojis = matches.map((match) => match.replace(/[\[\]]/g, ""));
     //get the emojis from the client
