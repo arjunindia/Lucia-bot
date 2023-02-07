@@ -47,7 +47,10 @@ export default defineSlashCommand({
           color: "RANDOM",
           footer: {
             text: "Powered by SauceNAO",
-            iconURL: "https://saucenao.com/favicon.ico",
+            iconURL:
+              "https://cdn.discordapp.com/attachments/1064865079167811618/1072478945389326336/saucenao_23437.webp",
+            icon_url:
+              "https://cdn.discordapp.com/attachments/1064865079167811618/1072478945389326336/saucenao_23437.webp",
           },
         },
       ],
