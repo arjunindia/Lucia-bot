@@ -40,6 +40,11 @@ export default defineSlashCommand({
             url: results[0].thumbnail,
           },
           color: "RANDOM",
+          footer: {
+            text:
+              "Not what you were looking for? Try Yandex Reverse Image Search here: https://yandex.com/images/search?rpt=imageview&img_url=" +
+              url,
+          },
         },
       ],
     });
