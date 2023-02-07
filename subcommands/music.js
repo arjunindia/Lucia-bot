@@ -268,86 +268,85 @@ export default defineSlashSubcommand({
         });
       },
     }),
-      defineSubcommand({
-        name: "resume",
-        description: "Pause the current song",
-        type: "SUB_COMMAND",
+    defineSubcommand({
+      name: "resume",
+      description: "Pause the current song",
+      type: "SUB_COMMAND",
 
-        async execute(ctx) {
-          if (!ctx.interaction.member.voice.channel)
-            return await ctx.interaction.reply({
-              embeds: [
-                {
-                  title:
-                    "You need to be in a voice channel to use this command!",
-                  color: "RED",
-                },
-              ],
-              ephemeral: true,
-            });
-
-          if (!ctx.interaction.guild.voice.channel.id) {
-            return await ctx.interaction.reply({
-              embeds: [
-                {
-                  title:
-                    "I'm not in a voice channel! Play a song with `/music play` !",
-                  color: "RED",
-                },
-              ],
-              ephemeral: true,
-            });
-          }
-          if (
-            ctx.interaction.guild.voice.channel.id !==
-            ctx.interaction.member.voice.channel.id
-          ) {
-            return await ctx.interaction.reply({
-              embeds: [
-                {
-                  title:
-                    "You need to be in the same voice channel me to use this command!",
-                  color: "RED",
-                },
-              ],
-              ephemeral: true,
-            });
-          }
-
-          await ctx.interaction.deferReply();
-          let guildQueue = ctx.client.player.getQueue(ctx.interaction.guild.id);
-
-          if (!guildQueue)
-            return await ctx.interaction.editReply({
-              embeds: [
-                {
-                  title: "There is no song playing!",
-                  color: "RED",
-                },
-              ],
-            });
-
-          if (!guildQueue.paused) {
-            return await ctx.interaction.editReply({
-              embeds: [
-                {
-                  title: "The song is not paused!",
-                  color: "RED",
-                },
-              ],
-            });
-          }
-
-          if (guildQueue) guildQueue.setPaused(false);
-          await ctx.interaction.editReply({
+      async execute(ctx) {
+        if (!ctx.interaction.member.voice.channel)
+          return await ctx.interaction.reply({
             embeds: [
               {
-                title: "Resumed the current song!",
-                color: "RANDOM",
+                title: "You need to be in a voice channel to use this command!",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
+
+        if (!ctx.interaction.guild.voice.channel.id) {
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title:
+                  "I'm not in a voice channel! Play a song with `/music play` !",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
+        }
+        if (
+          ctx.interaction.guild.voice.channel.id !==
+          ctx.interaction.member.voice.channel.id
+        ) {
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title:
+                  "You need to be in the same voice channel me to use this command!",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
+        }
+
+        await ctx.interaction.deferReply();
+        let guildQueue = ctx.client.player.getQueue(ctx.interaction.guild.id);
+
+        if (!guildQueue)
+          return await ctx.interaction.editReply({
+            embeds: [
+              {
+                title: "There is no song playing!",
+                color: "RED",
               },
             ],
           });
-        },
-      });,
+
+        if (!guildQueue.paused) {
+          return await ctx.interaction.editReply({
+            embeds: [
+              {
+                title: "The song is not paused!",
+                color: "RED",
+              },
+            ],
+          });
+        }
+
+        if (guildQueue) guildQueue.setPaused(false);
+        await ctx.interaction.editReply({
+          embeds: [
+            {
+              title: "Resumed the current song!",
+              color: "RANDOM",
+            },
+          ],
+        });
+      },
+    }),
   ],
 });
