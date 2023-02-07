@@ -425,6 +425,19 @@ export default defineSlashSubcommand({
             ephemeral: true,
           });
         }
+        if (song.isFirst) {
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title: "Cannot remove the current playing song",
+                description:
+                  "You cannot remove the current playing song! use `/skip` to skip the current song!",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
+        }
         guildQueue.remove(ctx.interaction.options.get("index").value - 1);
         await ctx.interaction.reply({
           embeds: [
