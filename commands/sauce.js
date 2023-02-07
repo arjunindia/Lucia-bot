@@ -23,7 +23,9 @@ export default defineSlashCommand({
       embeds: [
         {
           title: "Sauce",
-          description: `**Name:**${
+          description: `
+          **Index Name**:${results[0].raw.header.index_name}
+          \N**Name:**${
             results[0].raw.data.source
               ? results[0].raw.data.source
               : results[0].raw.data.title
