@@ -43,7 +43,7 @@ export default defineSlashCommand({
           footer: {
             text:
               "Not what you were looking for? Try [Yandex Reverse Image Search](https://yandex.com/images/search?rpt=imageview&img_url=" +
-              url +
+              encodeURIComponent(url) +
               ")",
           },
         },
