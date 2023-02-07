@@ -304,7 +304,11 @@ export default defineSlashSubcommand({
               title:
                 ctx.interaction.options.get("loopmode").value === 0
                   ? "Looping disabled!"
-                  : "Looped the current song!",
+                  : "Looped the current " +
+                      ctx.interaction.options.get("loopmode").value ==
+                    1
+                  ? "song"
+                  : "queue" + "!",
               color: "GREEN",
             },
           ],
