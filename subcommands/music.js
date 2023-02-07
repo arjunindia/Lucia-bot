@@ -206,7 +206,7 @@ export default defineSlashSubcommand({
             ephemeral: true,
           });
 
-        if (!ctx.interaction.guild.voice) {
+        if (!ctx.interaction.guild.voice.channel.id) {
           return await ctx.interaction.reply({
             embeds: [
               {
