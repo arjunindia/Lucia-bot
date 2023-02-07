@@ -345,7 +345,7 @@ export default defineSlashSubcommand({
           embeds: [
             {
               title: "Current song progress",
-              description: progress.prettier,
+              description: "`" + progress.prettier + "`",
               color: "RANDOM",
             },
           ],
