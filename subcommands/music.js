@@ -195,6 +195,17 @@ export default defineSlashSubcommand({
       type: "SUB_COMMAND",
       async execute(ctx) {
         let guildQueue = ctx.client.player.getQueue(ctx.interaction.guild.id);
+        if (!guildQueue)
+          return await ctx.interaction.reply({
+            embeds: [
+              {
+                title:
+                  "There is no music playing! Use `/music play` to play a song!",
+                color: "RED",
+              },
+            ],
+            ephemeral: true,
+          });
         if (!ctx.interaction.member.voice.channel)
           return await ctx.interaction.reply({
             embeds: [
@@ -218,7 +229,7 @@ export default defineSlashSubcommand({
             ],
             ephemeral: true,
           });
-        if (guildQueue) guildQueue.setPaused(true);
+        guildQueue.setPaused(true);
         await ctx.interaction.reply({
           embeds: [
             {
