@@ -24,7 +24,7 @@ export default defineSlashCommand({
     const emojis = ctx.client.emojis.cache.map((emoji) => emoji.toString());
     //create pages1 array with 25 emojis per array
     const pages1 = emojis.reduce((acc, cur, i) => {
-      if (i % 30 === 0) {
+      if (i % 20 === 0) {
         acc.push([cur]);
       } else {
         acc[acc.length - 1].push(cur);
