@@ -61,6 +61,9 @@ export default defineSlashCommand({
       if (post.over_18) {
         return await postFn();
       }
+      if (!post?.url) {
+        return await postFn();
+      }
       return post;
     };
     const post = await postFn();
