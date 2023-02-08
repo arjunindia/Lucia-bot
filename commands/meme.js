@@ -95,7 +95,7 @@ export default defineSlashCommand({
       },
       footer: {
         text: `Posted by u/${
-          post.author.name ? post.author.name : "anonymous"
+          post?.author?.name ? post.author.name : "anonymous"
         } in r/${sub}`,
       },
     };
