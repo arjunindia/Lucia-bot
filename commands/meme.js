@@ -80,7 +80,7 @@ export default defineSlashCommand({
         },
         footer: {
           text: `Posted by u/${
-            post.author.name ? post.author.name : "anonymous"
+            post?.author?.name ? post.author.name : "anonymous"
           } in r/${sub}`,
         },
       };
@@ -91,7 +91,7 @@ export default defineSlashCommand({
       title: post.title,
       url: `https://reddit.com${post.permalink}`,
       image: {
-        url: post?.url ? post.url : "https://i.imgur.com/0Z0Z0Z0.png",
+        url: post?.url ? post.url : post?.preview?.images[0]?.source.url,
       },
       footer: {
         text: `Posted by u/${
