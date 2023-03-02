@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/c3af2220-21f9-43a4-838f-effaeac367e0/resourceGroups/LuciaDiscord/providers/Microsoft.Web/sites/LuciaDiscord",
+  "appService.deploySubpath": "."
+}
