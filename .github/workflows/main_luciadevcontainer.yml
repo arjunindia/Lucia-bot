@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_f481cb9b9bc647b2bb894e2bc682e892 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_e574eba9184c4160b9a633866b1e4583 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_abec97fd1463427f9ad4859281b13c14 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_79e45f0536a045c5af65842619ad8cbf }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_f481cb9b9bc647b2bb894e2bc682e892 }}/arjunsdev/luciabot:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_abec97fd1463427f9ad4859281b13c14 }}/arjunsdev/luciabot:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'luciadevcontainer'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_17d85f0b99ca4ca092adb209b43d6170 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_f481cb9b9bc647b2bb894e2bc682e892 }}/arjunsdev/luciabot:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5716d7ed4b07443a840b0c78b0dfc5b1 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_abec97fd1463427f9ad4859281b13c14 }}/arjunsdev/luciabot:${{ github.sha }}'
