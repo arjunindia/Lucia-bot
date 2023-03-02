@@ -1,0 +1,14 @@
+# nodejs 18 + .env
+version: "3.9"
+services:
+  nodejs:
+    image: arjun/luciabot
+    container_name: nodejs
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - .env:/app/.env
+    working_dir: /app
+    command: npm run start
